@@ -57,7 +57,6 @@ function App() {
             margin="normal"
             fullWidth
             variant="filled"
-            variant="filled"
             label="Nombre"
           />
           <TextField
