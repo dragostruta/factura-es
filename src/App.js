@@ -23,23 +23,45 @@ function App() {
   const classes = useStyles();
   const [descriptions, setDescriptions] = useState([]);
   const [counter, setCounter] = useState(1);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [date, setDate] = useState("");
+  const [article, setArticle] = useState([]);
+
+  const handleDownload = () => {
+    console.log("test");
+  };
+
+  const handleChangeName = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleChangePhone = (event) => {
+    setPhone(event.target.value);
+  };
+
+  const handleChangeMobile = (event) => {
+    setMobile(event.target.value);
+  };
+
+  const handleChangeDate = (event) => {
+    setDate(event.target.value);
+  };
 
   const handleInputDescriptions = () => {
     setDescriptions([
       ...descriptions,
-      <div>
+      <div key={counter - 1}>
         <Typography># {counter}</Typography>
         <TextField
           margin="normal"
           fullWidth
           variant="filled"
-          label="Descripcion"
+          label="ARTÍCULO"
         />
-        <TextField margin="normal" fullWidth variant="filled" label="Unidat" />
-        <TextField margin="normal" fullWidth variant="filled" label="Precio" />
-        <TextField margin="normal" fullWidth variant="filled" label="% Dto" />
-        <TextField margin="normal" fullWidth variant="filled" label="Dto" />
-        <TextField margin="normal" fullWidth variant="filled" label="Total" />
+        <TextField margin="normal" fullWidth variant="filled" label="Tarifa" />
+        <TextField margin="normal" fullWidth variant="filled" label="Cant." />
         <Divider className={classes.margin} variant="middle" />
       </div>,
     ]);
@@ -51,51 +73,6 @@ function App() {
       <Container maxWidth="sm">
         <form noValidate autoComplete="off">
           <Typography variant="h4" component="h2">
-            Empresa
-          </Typography>
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Nombre"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Direccion"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Poblacion"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Provincia"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="CIF/NIF"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Correo Electrico"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Telefono"
-          />
-          <Typography variant="h4" component="h2">
             Datos del cliente
           </Typography>
           <TextField
@@ -103,55 +80,34 @@ function App() {
             fullWidth
             variant="filled"
             label="Nombre"
+            onChange={handleChangeName}
           />
           <TextField
             margin="normal"
             fullWidth
             variant="filled"
-            label="Direccion"
+            label="Teléfono"
+            onChange={handleChangePhone}
           />
           <TextField
             margin="normal"
             fullWidth
             variant="filled"
-            label="Poblacion"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Provincia"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="CIF/NIF"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Correo Electrico"
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            variant="filled"
-            label="Telefono"
+            label="Móvil"
+            onChange={handleChangeMobile}
           />
           <Typography variant="h4" component="h2">
-            Factura
+            Fecha
           </Typography>
           <TextField
+            type="date"
             margin="normal"
             fullWidth
             variant="filled"
-            label="Factura N"
+            onChange={handleChangeDate}
           />
-          <TextField margin="normal" fullWidth variant="filled" label="Fecha" />
           <Typography variant="h4" component="h2">
-            Descripcion
+            ARTÍCULO
           </Typography>
           {descriptions}
           <ButtonGroup
@@ -166,7 +122,11 @@ function App() {
             >
               Add
             </Button>
-            <Button startIcon={<SaveAltIcon />} color="secundary">
+            <Button
+              onClick={handleDownload}
+              startIcon={<SaveAltIcon />}
+              color="secondary"
+            >
               Download
             </Button>
           </ButtonGroup>
