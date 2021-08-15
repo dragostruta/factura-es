@@ -12,6 +12,8 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
 import "@fontsource/roboto";
 import React, { useState } from "react";
+import { saveAs } from "file-saver";
+import JsExcelTemplate from "js-excel-template/browser/browser";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -30,7 +32,16 @@ function App() {
   const [article, setArticle] = useState([]);
 
   const handleDownload = () => {
-    console.log("test");
+    fetch("./test.xlsx")
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) => {
+        const excelTemplate = JsExcelTemplate.fromArrayBuffer(arrayBuffer);
+        excelTemplate.set("name", name);
+        excelTemplate.set("phone", phone);
+        excelTemplate.set("mobile", mobile);
+        excelTemplate.set("date", date);
+        saveAs(excelTemplate.toBlob(), "test.xlsx");
+      });
   };
 
   const handleChangeName = (event) => {
