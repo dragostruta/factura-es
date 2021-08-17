@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/factura-es/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/factura-es/static/js/main.2bd2ecb2.chunk.js",
+    "main.js.map": "/factura-es/static/js/main.2bd2ecb2.chunk.js.map",
+    "runtime-main.js": "/factura-es/static/js/runtime-main.fcc610cd.js",
+    "runtime-main.js.map": "/factura-es/static/js/runtime-main.fcc610cd.js.map",
+    "static/css/2.b54af88e.chunk.css": "/factura-es/static/css/2.b54af88e.chunk.css",
+    "static/js/2.171b6e6a.chunk.js": "/factura-es/static/js/2.171b6e6a.chunk.js",
+    "static/js/2.171b6e6a.chunk.js.map": "/factura-es/static/js/2.171b6e6a.chunk.js.map",
+    "static/js/3.c377875c.chunk.js": "/factura-es/static/js/3.c377875c.chunk.js",
+    "static/js/3.c377875c.chunk.js.map": "/factura-es/static/js/3.c377875c.chunk.js.map",
+    "index.html": "/factura-es/index.html",
+    "static/css/2.b54af88e.chunk.css.map": "/factura-es/static/css/2.b54af88e.chunk.css.map",
+    "static/css/main.8c8b27cf.chunk.css.map": "/factura-es/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.171b6e6a.chunk.js.LICENSE.txt": "/factura-es/static/js/2.171b6e6a.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/factura-es/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fcc610cd.js",
+    "static/css/2.b54af88e.chunk.css",
+    "static/js/2.171b6e6a.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.2bd2ecb2.chunk.js"
+  ]
+}
