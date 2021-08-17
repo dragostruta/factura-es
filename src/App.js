@@ -40,6 +40,34 @@ function App() {
         excelTemplate.set("phone", phone);
         excelTemplate.set("mobile", mobile);
         excelTemplate.set("date", date);
+        let totalPrice = 0;
+        article.map((element, index) => {
+          excelTemplate.set(
+            "article[" + index + "]['description']",
+            element.description
+          );
+          excelTemplate.set("article[" + index + "]['price']", element.price);
+          excelTemplate.set(
+            "article[" + index + "]['count']",
+            element.quantity
+          );
+          excelTemplate.set(
+            "article[" + index + "]['total']",
+            element.price * element.quantity
+          );
+          totalPrice = totalPrice + element.price * element.quantity;
+
+          return element;
+        });
+
+        excelTemplate.set("totalPrice", totalPrice);
+
+        for (let i = counter - 1; i <= 19; i++) {
+          excelTemplate.set("article[" + i + "]['description']", "");
+          excelTemplate.set("article[" + i + "]['price']", "");
+          excelTemplate.set("article[" + i + "]['count']", "");
+          excelTemplate.set("article[" + i + "]['total']", "");
+        }
         saveAs(excelTemplate.toBlob(), "test.xlsx");
       });
   };
@@ -60,6 +88,21 @@ function App() {
     setDate(event.target.value);
   };
 
+  const handleChangeDescription = (event) => {
+    article[counter - 1].description = event.target.value;
+    setArticle(article);
+  };
+
+  const handleChangePrice = (event) => {
+    article[counter - 1].price = event.target.value;
+    setArticle(article);
+  };
+
+  const handleChangeQuantity = (event) => {
+    article[counter - 1].quantity = event.target.value;
+    setArticle(article);
+  };
+
   const handleInputDescriptions = () => {
     setDescriptions([
       ...descriptions,
@@ -70,12 +113,31 @@ function App() {
           fullWidth
           variant="filled"
           label="ARTÍCULO"
+          onChange={handleChangeDescription}
         />
-        <TextField margin="normal" fullWidth variant="filled" label="Tarifa" />
-        <TextField margin="normal" fullWidth variant="filled" label="Cant." />
+        <TextField
+          margin="normal"
+          fullWidth
+          variant="filled"
+          label="Tarifa"
+          onChange={handleChangePrice}
+        />
+        <TextField
+          margin="normal"
+          fullWidth
+          variant="filled"
+          label="Cant."
+          onChange={handleChangeQuantity}
+        />
         <Divider className={classes.margin} variant="middle" />
       </div>,
     ]);
+    article.push({
+      description: "",
+      price: 0,
+      quantity: 0,
+    });
+    setArticle(article);
     setCounter(counter + 1);
   };
 
