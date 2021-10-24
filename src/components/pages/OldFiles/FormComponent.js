@@ -5,7 +5,7 @@ import SaveAltIcon from "@material-ui/icons/SaveAlt";
 import { makeStyles } from "@material-ui/core/styles";
 import Description from "./DescriptionComponent";
 import { PDFDownloadLink, usePDF } from "@react-pdf/renderer";
-import MyDocument from "../../core/DownloadDocument";
+import MyDocument from "../../core/MyDocument";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
