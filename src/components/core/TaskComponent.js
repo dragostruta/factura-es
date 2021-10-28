@@ -78,7 +78,7 @@ const TaskComponent = ({ nextStep, prevStep }) => {
           </div>
           <div className="px-4 py-2 w-full">
             <button onClick={prevStep} type="submit" className="form-button">
-              Previous
+              Back
             </button>
           </div>
           <div className="px-4 py-2 w-full">
