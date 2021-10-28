@@ -1,4 +1,9 @@
-const FormComponent = ({ nextStep }) => {
+const FormComponent = ({
+  nextStep,
+  handleClientInformation,
+  client,
+  handleClearClientInformation,
+}) => {
   return (
     <div className="bg-gray-light rounded-md p8 shadow-lg w-1/2 phone:w-full">
       <div className="mt-2">
@@ -21,36 +26,39 @@ const FormComponent = ({ nextStep }) => {
                       </label>
                       <input
                         type="text"
-                        name="first-name"
+                        name="firstName"
                         id="first-name"
-                        autoComplete="given-name"
                         className="form-input"
+                        value={client.clientInformation?.firstName ?? ""}
+                        onChange={handleClientInformation}
                       />
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="first-name" className="form-input-span">
+                      <label htmlFor="last-name" className="form-input-span">
                         Last name
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
+                        name="lastName"
+                        id="last-name"
                         className="form-input"
+                        value={client.clientInformation?.lastName ?? ""}
+                        onChange={handleClientInformation}
                       />
                     </div>
 
                     <div className="col-span-6">
-                      <label htmlFor="first-name" className="form-input-span">
+                      <label htmlFor="email" className="form-input-span">
                         Email
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
+                        name="email"
+                        id="email"
                         className="form-input"
+                        value={client.clientInformation?.email ?? ""}
+                        onChange={handleClientInformation}
                       />
                     </div>
 
@@ -61,61 +69,78 @@ const FormComponent = ({ nextStep }) => {
                       <select
                         id="country"
                         name="country"
-                        autoComplete="country-name"
                         className="form-input"
+                        value={client.clientInformation?.country ?? "Select"}
+                        onChange={handleClientInformation}
                       >
+                        <option>Select</option>
                         <option>Spain</option>
                       </select>
                     </div>
 
                     <div className="col-span-6">
-                      <label htmlFor="first-name" className="form-input-span">
+                      <label
+                        htmlFor="street-address"
+                        className="form-input-span"
+                      >
                         Street address
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
+                        name="streetAddress"
+                        id="street-address"
                         className="form-input"
+                        value={client.clientInformation?.streetAddress ?? ""}
+                        onChange={handleClientInformation}
                       />
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="first-name" className="form-input-span">
+                      <label htmlFor="city" className="form-input-span">
                         City
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
+                        name="city"
+                        id="city"
                         className="form-input"
+                        value={client.clientInformation?.city ?? ""}
+                        onChange={handleClientInformation}
                       />
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="first-name" className="form-input-span">
+                      <label htmlFor="postal-code" className="form-input-span">
                         Zip / Postal Code
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
+                        name="postalCode"
+                        id="postal-code"
                         className="form-input"
+                        value={client.clientInformation?.postalCode ?? ""}
+                        onChange={handleClientInformation}
                       />
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-center items-center">
-                  <div className="px-4 py-3 pb-6 w-full">
+                <div>
+                  <div className="px-4 py-2 w-full">
                     <button
                       onClick={nextStep}
                       type="submit"
                       className="form-button"
                     >
                       Next
+                    </button>
+                  </div>
+                  <div className="px-4 py-2 w-full">
+                    <button
+                      onClick={handleClearClientInformation}
+                      type="submit"
+                      className="form-button bg-red-600 focus:bg-red-500 hover:bg-red-600"
+                    >
+                      Clear
                     </button>
                   </div>
                 </div>
