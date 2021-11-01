@@ -8,7 +8,7 @@
   }
 
   .form-input {
-    @apply w-full border border-gray-light px-3 py-2 rounded-md shadow-md
+    @apply w-full border border-gray-light px-1 py-2 rounded-md shadow-md
       focus:outline-none focus:border-blue-dark focus:ring-1 focus:ring-blue-dark
       outline-none;
   }

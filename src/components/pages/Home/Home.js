@@ -7,6 +7,19 @@ const Home = () => {
   const [user, setUser] = useState({});
   const [client, setClient] = useState({});
 
+  const sendData = () => {
+    fetch("https://obscure-dawn-33870.herokuapp.com/postInformation", {
+      method: "post",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        user: user,
+        client: client,
+      }),
+    })
+      .then((response) => response.json)
+      .then((response) => {});
+  };
+
   const nextStep = () => {
     fetch("https://obscure-dawn-33870.herokuapp.com/postInformation", {
       method: "post",
@@ -63,6 +76,18 @@ const Home = () => {
     }).then((response) => response.json);
   };
 
+  const handleTaskInformation = (event) => {
+    let { name, value, index } = event.target;
+    console.log(event.target);
+
+    setClient((prevClient) => ({
+      ...prevClient,
+      taskInformation: {
+        [index]: { [name]: value },
+      },
+    }));
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       {step === 0 ? (
@@ -73,7 +98,12 @@ const Home = () => {
           nextStep={nextStep}
         />
       ) : (
-        <TaskComponent nextStep={nextStep} prevStep={prevStep} />
+        <TaskComponent
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleTaskInformation={handleTaskInformation}
+          sendData={sendData}
+        />
       )}
     </div>
   );

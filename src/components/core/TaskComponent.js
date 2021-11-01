@@ -1,49 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "./MyDocument";
 
-const TaskComponent = ({ nextStep, prevStep }) => {
+const TaskComponent = ({
+  nextStep,
+  prevStep,
+  handleTaskInformation,
+  sendData,
+}) => {
   const [taskList, setTaskList] = useState([]);
+  const [index, setIndex] = useState(1);
+
   const handleAddingToList = () => {
-    setTaskList(() => taskList.concat(<TaskInput />));
+    sendData();
+    setIndex(() => index + 1);
+    setTaskList(() => taskList.concat(<TaskInput indexElement={index} />));
   };
-  const TaskInput = () => {
+
+  useEffect(() => {
+    setIndex(1);
+    setTaskList([]);
+  }, []);
+
+  const TaskInput = ({ indexElement }) => {
     return (
       <div className="grid grid-cols-6 gap-3 py-1 px-2">
         <div className="col-span-4">
-          <label htmlFor="first-name" className="form-input-span phone:text-sm">
-            Articol
+          <label htmlFor="article" className="form-input-span phone:text-sm">
+            Task
           </label>
           <input
             type="text"
-            name="first-name"
-            id="first-name"
-            autoComplete="given-name"
-            className="form-input"
+            name="article"
+            className="form-input phone:text-xs"
+            index={indexElement}
+            onChange={handleTaskInformation}
           />
         </div>
         <div className="col-span-1">
-          <label htmlFor="first-name" className="form-input-span phone:text-sm">
-            Tarif €
+          <label htmlFor="price" className="form-input-span phone:text-sm">
+            Price €
           </label>
           <input
             type="text"
-            name="first-name"
-            id="first-name"
-            autoComplete="given-name"
-            className="form-input"
+            name="price"
+            index={indexElement}
+            className="form-input phone:text-xs"
+            onChange={handleTaskInformation}
           />
         </div>
         <div className="col-span-1">
-          <label htmlFor="first-name" className="form-input-span phone:text-sm">
+          <label htmlFor="count" className="form-input-span phone:text-sm">
             Cant.
           </label>
           <input
             type="text"
-            name="first-name"
-            id="first-name"
-            autoComplete="given-name"
-            className="form-input"
+            name="count"
+            index={indexElement}
+            className="form-input phone:text-xs"
+            onChange={handleTaskInformation}
           />
         </div>
       </div>
@@ -61,7 +76,7 @@ const TaskComponent = ({ nextStep, prevStep }) => {
           </div>
         </div>
         <div id="task-input-list">
-          <TaskInput />
+          <TaskInput indexElement={0} />
           {taskList.map((element, index) => {
             return <div key={index}>{element}</div>;
           })}
