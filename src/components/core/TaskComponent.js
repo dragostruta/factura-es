@@ -7,19 +7,24 @@ const TaskComponent = ({
   prevStep,
   handleTaskInformation,
   sendData,
+  handleClearTaskInformation,
 }) => {
   const [taskList, setTaskList] = useState([]);
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
 
   const handleAddingToList = () => {
     sendData();
     setIndex(() => index + 1);
-    setTaskList(() => taskList.concat(<TaskInput indexElement={index} />));
+    setTaskList(() => taskList.concat(<TaskInput indexElement={index + 1} />));
+  };
+
+  const handleTaskList = () => {
+    setIndex(0);
+    setTaskList([<TaskInput indexElement={0} />]);
   };
 
   useEffect(() => {
-    setIndex(1);
-    setTaskList([]);
+    handleTaskList();
   }, []);
 
   const TaskInput = ({ indexElement }) => {
@@ -76,7 +81,6 @@ const TaskComponent = ({
           </div>
         </div>
         <div id="task-input-list">
-          <TaskInput indexElement={0} />
           {taskList.map((element, index) => {
             return <div key={index}>{element}</div>;
           })}
@@ -104,6 +108,15 @@ const TaskComponent = ({
               >
                 Download
               </PDFDownloadLink>
+            </button>
+          </div>
+          <div className="px-4 py-2 w-full">
+            <button
+              onClick={(handleClearTaskInformation, handleTaskList)}
+              type="submit"
+              className="form-button bg-red-600 focus:bg-red-500 hover:bg-red-600"
+            >
+              Clear
             </button>
           </div>
         </div>

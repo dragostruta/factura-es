@@ -76,14 +76,27 @@ const Home = () => {
     }).then((response) => response.json);
   };
 
+  const handleClearTaskInformation = () => {
+    setClient((prevClient) => ({ ...prevClient, taskInformation: {} }));
+    fetch("https://obscure-dawn-33870.herokuapp.com/postInformation", {
+      method: "post",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        user: user,
+        client: { ...client, taskInformation: {} },
+      }),
+    }).then((response) => response.json);
+  };
+
   const handleTaskInformation = (event) => {
-    let { name, value, index } = event.target;
-    console.log(event.target);
+    let { name, value } = event.target;
+    let index = event.target.getAttribute("index");
 
     setClient((prevClient) => ({
       ...prevClient,
       taskInformation: {
-        [index]: { [name]: value },
+        ...prevClient.taskInformation,
+        [index]: { ...prevClient.taskInformation[index], [name]: value },
       },
     }));
   };
@@ -103,6 +116,7 @@ const Home = () => {
           prevStep={prevStep}
           handleTaskInformation={handleTaskInformation}
           sendData={sendData}
+          handleClearTaskInformation={handleClearTaskInformation}
         />
       )}
     </div>
