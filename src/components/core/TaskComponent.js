@@ -8,6 +8,7 @@ const TaskComponent = ({
   handleTaskInformation,
   sendData,
   handleClearTaskInformation,
+  handleRemoveTaskInformation,
 }) => {
   const [taskList, setTaskList] = useState([]);
   const [index, setIndex] = useState(0);
@@ -18,13 +19,25 @@ const TaskComponent = ({
     setTaskList(() => taskList.concat(<TaskInput indexElement={index + 1} />));
   };
 
+  const handleRemoveTask = () => {
+    if (taskList.length > 1) {
+      let newTaskList = taskList;
+      newTaskList.pop();
+      setIndex(() => index - 1);
+      setTaskList(newTaskList);
+      handleRemoveTaskInformation();
+    }
+  };
+
   const handleTaskList = () => {
     setIndex(0);
     setTaskList([<TaskInput indexElement={0} />]);
+    handleClearTaskInformation();
   };
 
   useEffect(() => {
-    handleTaskList();
+    setIndex(0);
+    setTaskList([<TaskInput indexElement={0} />]);
   }, []);
 
   const TaskInput = ({ indexElement }) => {
@@ -96,6 +109,15 @@ const TaskComponent = ({
             </button>
           </div>
           <div className="px-4 py-2 w-full">
+            <button
+              onClick={handleRemoveTask}
+              type="submit"
+              className="form-button bg-red-600 focus:bg-red-500 hover:bg-red-600"
+            >
+              Remove
+            </button>
+          </div>
+          <div className="px-4 py-2 w-full">
             <button onClick={prevStep} type="submit" className="form-button">
               Back
             </button>
@@ -112,7 +134,7 @@ const TaskComponent = ({
           </div>
           <div className="px-4 py-2 w-full">
             <button
-              onClick={(handleClearTaskInformation, handleTaskList)}
+              onClick={handleTaskList}
               type="submit"
               className="form-button bg-red-600 focus:bg-red-500 hover:bg-red-600"
             >

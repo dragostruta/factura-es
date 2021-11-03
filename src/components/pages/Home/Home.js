@@ -101,6 +101,19 @@ const Home = () => {
     }));
   };
 
+  const handleRemoveTaskInformation = () => {
+    let newClientTaskInformation = client.taskInformation;
+
+    delete newClientTaskInformation[
+      Object.keys(client.taskInformation).length - 1
+    ];
+
+    setClient((prevClient) => ({
+      ...prevClient,
+      taskInformation: newClientTaskInformation,
+    }));
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       {step === 0 ? (
@@ -117,6 +130,7 @@ const Home = () => {
           handleTaskInformation={handleTaskInformation}
           sendData={sendData}
           handleClearTaskInformation={handleClearTaskInformation}
+          handleRemoveTaskInformation={handleRemoveTaskInformation}
         />
       )}
     </div>
