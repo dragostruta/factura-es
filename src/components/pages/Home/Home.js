@@ -129,6 +129,7 @@ const Home = () => {
           prevStep={prevStep}
           handleTaskInformation={handleTaskInformation}
           sendData={sendData}
+          client={client}
           handleClearTaskInformation={handleClearTaskInformation}
           handleRemoveTaskInformation={handleRemoveTaskInformation}
         />

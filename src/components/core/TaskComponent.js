@@ -9,6 +9,7 @@ const TaskComponent = ({
   sendData,
   handleClearTaskInformation,
   handleRemoveTaskInformation,
+  client,
 }) => {
   const [taskList, setTaskList] = useState([]);
   const [index, setIndex] = useState(0);
@@ -37,19 +38,28 @@ const TaskComponent = ({
 
   useEffect(() => {
     setIndex(0);
-    setTaskList([<TaskInput indexElement={0} />]);
+    if (Object.keys(client.taskInformation).length > 0) {
+      let newTaskList = [];
+      for (let i = 0; i < Object.keys(client.taskInformation).length; i++) {
+        newTaskList.push(<TaskInput indexElement={i} />);
+        setTaskList(newTaskList);
+      }
+    } else {
+      setTaskList([<TaskInput indexElement={0} />]);
+    }
+    // setTaskList([<TaskInput indexElement={0} />]);
   }, []);
 
-  const TaskInput = ({ indexElement }) => {
+  const TaskInput = ({ indexElement, task, price, count }) => {
     return (
       <div className="grid grid-cols-6 gap-3 py-1 px-2">
         <div className="col-span-4">
-          <label htmlFor="article" className="form-input-span phone:text-sm">
+          <label htmlFor="task" className="form-input-span phone:text-sm">
             Task
           </label>
           <input
             type="text"
-            name="article"
+            name="task"
             className="form-input phone:text-xs"
             index={indexElement}
             onChange={handleTaskInformation}
