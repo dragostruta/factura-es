@@ -30,7 +30,7 @@ const TaskComponent = ({
     }
   };
 
-  const handleTaskList = () => {
+  const handleClearTaskList = () => {
     setIndex(0);
     setTaskList([<TaskInput indexElement={0} />]);
     handleClearTaskInformation();
@@ -47,10 +47,9 @@ const TaskComponent = ({
     } else {
       setTaskList([<TaskInput indexElement={0} />]);
     }
-    // setTaskList([<TaskInput indexElement={0} />]);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const TaskInput = ({ indexElement, task, price, count }) => {
+  const TaskInput = ({ indexElement }) => {
     return (
       <div className="grid grid-cols-6 gap-3 py-1 px-2">
         <div className="col-span-4">
@@ -60,8 +59,10 @@ const TaskComponent = ({
           <input
             type="text"
             name="task"
+            id={"task-" + indexElement}
             className="form-input phone:text-xs"
             index={indexElement}
+            value={client?.taskInformation[indexElement]?.task ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -72,8 +73,10 @@ const TaskComponent = ({
           <input
             type="text"
             name="price"
+            id={"price-" + indexElement}
             index={indexElement}
             className="form-input phone:text-xs"
+            value={client?.taskInformation[indexElement]?.price ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -84,8 +87,10 @@ const TaskComponent = ({
           <input
             type="text"
             name="count"
+            id={"count-" + indexElement}
             index={indexElement}
             className="form-input phone:text-xs"
+            value={client?.taskInformation[indexElement]?.count ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -144,7 +149,7 @@ const TaskComponent = ({
           </div>
           <div className="px-4 py-2 w-full">
             <button
-              onClick={handleTaskList}
+              onClick={handleClearTaskList}
               type="submit"
               className="form-button bg-red-600 focus:bg-red-500 hover:bg-red-600"
             >
