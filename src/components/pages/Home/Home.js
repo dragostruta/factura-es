@@ -130,6 +130,7 @@ const Home = () => {
           handleTaskInformation={handleTaskInformation}
           sendData={sendData}
           client={client}
+          user={user}
           handleClearTaskInformation={handleClearTaskInformation}
           handleRemoveTaskInformation={handleRemoveTaskInformation}
         />

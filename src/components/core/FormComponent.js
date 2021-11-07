@@ -20,30 +20,44 @@ const FormComponent = ({
               <div className="shadow overflow-hidden">
                 <div className="px-4 pb-1">
                   <div className="grid grid-cols-6 gap-3">
-                    <div className="col-span-3">
-                      <label htmlFor="first-name" className="form-input-span">
-                        First name
+                    <div className="col-span-6">
+                      <label htmlFor="name" className="form-input-span">
+                        Name
                       </label>
                       <input
                         type="text"
-                        name="firstName"
-                        id="first-name"
+                        name="name"
+                        id="name"
                         className="form-input"
-                        value={client.clientInformation?.firstName ?? ""}
+                        value={client.clientInformation?.name ?? ""}
                         onChange={handleClientInformation}
                       />
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="last-name" className="form-input-span">
-                        Last name
+                      <label htmlFor="phone" className="form-input-span">
+                        Phone
                       </label>
                       <input
                         type="text"
-                        name="lastName"
-                        id="last-name"
+                        name="phone"
+                        id="phone"
                         className="form-input"
-                        value={client.clientInformation?.lastName ?? ""}
+                        value={client.clientInformation?.phone ?? ""}
+                        onChange={handleClientInformation}
+                      />
+                    </div>
+
+                    <div className="col-span-3">
+                      <label htmlFor="mobile" className="form-input-span">
+                        Mobile
+                      </label>
+                      <input
+                        type="text"
+                        name="mobile"
+                        id="mobile"
+                        className="form-input"
+                        value={client.clientInformation?.mobile ?? ""}
                         onChange={handleClientInformation}
                       />
                     </div>

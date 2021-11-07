@@ -10,6 +10,7 @@ const TaskComponent = ({
   handleClearTaskInformation,
   handleRemoveTaskInformation,
   client,
+  user,
 }) => {
   const [taskList, setTaskList] = useState([]);
   const [index, setIndex] = useState(0);
@@ -18,6 +19,10 @@ const TaskComponent = ({
     sendData();
     setIndex(() => index + 1);
     setTaskList(() => taskList.concat(<TaskInput indexElement={index + 1} />));
+  };
+
+  const handleBeforeDownload = () => {
+    sendData();
   };
 
   const handleRemoveTask = () => {
@@ -40,12 +45,12 @@ const TaskComponent = ({
     setIndex(0);
     if (Object.keys(client.taskInformation).length > 0) {
       let newTaskList = [];
-      for (let i = 0; i < Object.keys(client.taskInformation).length; i++) {
+      for (let i = index; i < Object.keys(client.taskInformation).length; i++) {
         newTaskList.push(<TaskInput indexElement={i} />);
-        setTaskList(newTaskList);
       }
+      setTaskList(newTaskList);
     } else {
-      setTaskList([<TaskInput indexElement={0} />]);
+      setTaskList([<TaskInput indexElement={index} />]);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -62,7 +67,7 @@ const TaskComponent = ({
             id={"task-" + indexElement}
             className="form-input phone:text-xs"
             index={indexElement}
-            value={client?.taskInformation[indexElement]?.task ?? ""}
+            // value={client.taskInformation[indexElement]?.task ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -76,7 +81,7 @@ const TaskComponent = ({
             id={"price-" + indexElement}
             index={indexElement}
             className="form-input phone:text-xs"
-            value={client?.taskInformation[indexElement]?.price ?? ""}
+            // value={client.taskInformation[indexElement]?.price ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -90,7 +95,7 @@ const TaskComponent = ({
             id={"count-" + indexElement}
             index={indexElement}
             className="form-input phone:text-xs"
-            value={client?.taskInformation[indexElement]?.count ?? ""}
+            // value={client.taskInformation[indexElement]?.count ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -138,14 +143,14 @@ const TaskComponent = ({
             </button>
           </div>
           <div className="px-4 py-2 w-full">
-            <button type="submit" className="form-button">
-              <PDFDownloadLink
-                document={<MyDocument />}
-                fileName="somename.pdf"
-              >
-                Download
-              </PDFDownloadLink>
-            </button>
+            <PDFDownloadLink
+              document={<MyDocument client={client} user={user} />}
+              fileName={"factura-" + user.facturalNumber}
+              className="form-button"
+              onClick={handleBeforeDownload}
+            >
+              Download
+            </PDFDownloadLink>
           </div>
           <div className="px-4 py-2 w-full">
             <button
