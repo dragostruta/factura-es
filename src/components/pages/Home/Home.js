@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FormComponent from "../../core/FormComponent";
+import Loader from "../../core/LoaderComponent";
 import TaskComponent from "../../core/TaskComponent";
 
 const Home = () => {
@@ -17,7 +18,7 @@ const Home = () => {
       }),
     })
       .then((response) => response.json)
-      .then((response) => {});
+      .then(() => {});
   };
 
   const nextStep = () => {
@@ -30,7 +31,7 @@ const Home = () => {
       }),
     })
       .then((response) => response.json)
-      .then((response) => {
+      .then(() => {
         setStep(() => step + 1);
       });
   };
@@ -117,13 +118,17 @@ const Home = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       {step === 0 ? (
-        <FormComponent
-          client={client}
-          handleClearClientInformation={handleClearClientInformation}
-          handleClientInformation={handleClientInformation}
-          nextStep={nextStep}
-        />
-      ) : (
+        client ? (
+          <FormComponent
+            client={client}
+            handleClearClientInformation={handleClearClientInformation}
+            handleClientInformation={handleClientInformation}
+            nextStep={nextStep}
+          />
+        ) : (
+          <Loader />
+        )
+      ) : client ? (
         <TaskComponent
           nextStep={nextStep}
           prevStep={prevStep}
@@ -134,6 +139,8 @@ const Home = () => {
           handleClearTaskInformation={handleClearTaskInformation}
           handleRemoveTaskInformation={handleRemoveTaskInformation}
         />
+      ) : (
+        <Loader />
       )}
     </div>
   );
