@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/factura-es/static/css/main.aaf0f3a8.chunk.css",
-    "main.js": "/factura-es/static/js/main.bbeb79e8.chunk.js",
-    "main.js.map": "/factura-es/static/js/main.bbeb79e8.chunk.js.map",
+    "main.css": "/factura-es/static/css/main.ea86d45e.chunk.css",
+    "main.js": "/factura-es/static/js/main.c2418bb3.chunk.js",
+    "main.js.map": "/factura-es/static/js/main.c2418bb3.chunk.js.map",
     "runtime-main.js": "/factura-es/static/js/runtime-main.e0db35b9.js",
     "runtime-main.js.map": "/factura-es/static/js/runtime-main.e0db35b9.js.map",
     "static/js/2.05802af0.chunk.js": "/factura-es/static/js/2.05802af0.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.b21a21ab.chunk.js": "/factura-es/static/js/3.b21a21ab.chunk.js",
     "static/js/3.b21a21ab.chunk.js.map": "/factura-es/static/js/3.b21a21ab.chunk.js.map",
     "index.html": "/factura-es/index.html",
-    "static/css/main.aaf0f3a8.chunk.css.map": "/factura-es/static/css/main.aaf0f3a8.chunk.css.map",
+    "static/css/main.ea86d45e.chunk.css.map": "/factura-es/static/css/main.ea86d45e.chunk.css.map",
     "static/js/2.05802af0.chunk.js.LICENSE.txt": "/factura-es/static/js/2.05802af0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e0db35b9.js",
     "static/js/2.05802af0.chunk.js",
-    "static/css/main.aaf0f3a8.chunk.css",
-    "static/js/main.bbeb79e8.chunk.js"
+    "static/css/main.ea86d45e.chunk.css",
+    "static/js/main.c2418bb3.chunk.js"
   ]
 }
