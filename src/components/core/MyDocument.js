@@ -116,9 +116,9 @@ const SubHeader = () => {
   );
 };
 
-const Table = () => {
-  return <View style={styles.container}></View>;
-};
+// const Table = () => {
+//   return <View style={styles.container}></View>;
+// };
 
 // Create Document Component
 const MyDocument = ({ client, user }) => {

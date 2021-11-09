@@ -46,7 +46,14 @@ const TaskComponent = ({
     if (Object.keys(client.taskInformation).length > 0) {
       let newTaskList = [];
       for (let i = index; i < Object.keys(client.taskInformation).length; i++) {
-        newTaskList.push(<TaskInput indexElement={i} />);
+        newTaskList.push(
+          <TaskInput
+            indexElement={i}
+            task={client.taskInformation[i]?.task}
+            price={client.taskInformation[i]?.price}
+            count={client.taskInformation[i]?.count}
+          />
+        );
       }
       setTaskList(newTaskList);
     } else {
@@ -54,7 +61,7 @@ const TaskComponent = ({
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const TaskInput = ({ indexElement }) => {
+  const TaskInput = ({ indexElement, task, price, count }) => {
     return (
       <div className="grid grid-cols-6 gap-3 py-1 px-2">
         <div className="col-span-4">
@@ -67,7 +74,7 @@ const TaskComponent = ({
             id={"task-" + indexElement}
             className="form-input phone:text-xs"
             index={indexElement}
-            // value={client.taskInformation[indexElement]?.task ?? ""}
+            defaultValue={task ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -81,7 +88,7 @@ const TaskComponent = ({
             id={"price-" + indexElement}
             index={indexElement}
             className="form-input phone:text-xs"
-            // value={client.taskInformation[indexElement]?.price ?? ""}
+            defaultValue={price ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
@@ -95,7 +102,7 @@ const TaskComponent = ({
             id={"count-" + indexElement}
             index={indexElement}
             className="form-input phone:text-xs"
-            // value={client.taskInformation[indexElement]?.count ?? ""}
+            defaultValue={count ?? ""}
             onChange={handleTaskInformation}
           />
         </div>
