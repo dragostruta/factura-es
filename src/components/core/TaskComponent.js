@@ -60,12 +60,12 @@ const TaskComponent = ({
   const createAndDonwloadPdf = () => {
     sendData();
     axios
-      .post("http://localhost:3001/createPdf", {
+      .post("https://obscure-dawn-33870.herokuapp.com/createPdf", {
         user: user,
         client: client,
       })
       .then(() =>
-        axios.get("http://localhost:3001/fetchPdf", { responseType: "blob" })
+        axios.get("https://obscure-dawn-33870.herokuapp.com/fetchPdf", { responseType: "blob" })
       )
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" });
