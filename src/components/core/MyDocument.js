@@ -116,9 +116,13 @@ const SubHeader = () => {
   );
 };
 
-// const Table = () => {
-//   return <View style={styles.container}></View>;
-// };
+const Table = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.gridContainer}></View>
+    </View>
+  );
+};
 
 // Create Document Component
 const MyDocument = ({ client, user }) => {
@@ -127,6 +131,7 @@ const MyDocument = ({ client, user }) => {
       <Page size="A4" style={styles.page}>
         <Header client={client} user={user} />
         <SubHeader />
+        <Table />
       </Page>
     </Document>
   );

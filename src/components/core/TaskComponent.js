@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import MyDocument from "./MyDocument";
+import { saveAs } from "file-saver";
+import axios from "axios";
 
 const TaskComponent = ({
   nextStep,
@@ -19,10 +19,6 @@ const TaskComponent = ({
     sendData();
     setIndex(() => index + 1);
     setTaskList(() => taskList.concat(<TaskInput indexElement={index + 1} />));
-  };
-
-  const handleBeforeDownload = () => {
-    sendData();
   };
 
   const handleRemoveTask = () => {
@@ -60,6 +56,23 @@ const TaskComponent = ({
       setTaskList([<TaskInput indexElement={index} />]);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const createAndDonwloadPdf = () => {
+    sendData();
+    axios
+      .post("http://localhost:3001/createPdf", {
+        user: user,
+        client: client,
+      })
+      .then(() =>
+        axios.get("http://localhost:3001/fetchPdf", { responseType: "blob" })
+      )
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+
+        saveAs(pdfBlob, "newPdf.pdf");
+      });
+  };
 
   const TaskInput = ({ indexElement, task, price, count }) => {
     return (
@@ -150,14 +163,13 @@ const TaskComponent = ({
             </button>
           </div>
           <div className="px-4 py-2 w-full">
-            <PDFDownloadLink
-              document={<MyDocument client={client} user={user} />}
-              fileName={"factura-" + user.facturalNumber}
+            <button
+              onClick={createAndDonwloadPdf}
+              type="submit"
               className="form-button"
-              onClick={handleBeforeDownload}
             >
               Download
-            </PDFDownloadLink>
+            </button>
           </div>
           <div className="px-4 py-2 w-full">
             <button
